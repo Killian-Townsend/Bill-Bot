@@ -1,0 +1,8 @@
+{
+    "Token": "YOUR_TOKEN_HERE",
+    "Prefix": "bill",
+    "Owner": "Your ID",
+    "BotID": "The Bots ID",
+    "BotVersion": "0.1.8",
+    "BotName": "Bill Bot"
+}
