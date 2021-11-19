@@ -151,18 +151,22 @@ function output(input) {
 
         // Question
         if (text.endsWith("?")) {
+            if(Config.kadenceMode) return ["I'm sorry, I don't know", text];
             product = quesAwns[Math.floor(Math.random() * quesAwns.length)];
         }
         // Robot
         else if (text.match(/robot/gi) || text.match(/bot/gi) || text.match(/fake/gi)) {
+            if(Config.kadenceMode) return ["I'm sorry, I don't know what you're talking about, sorry", text];
             product = robot[Math.floor(Math.random() * robot.length)];
         }
         // Predefined Responses
         else if (compare(trigger, reply, text)) {
+            if(Config.kadenceMode) return ["Sorry, that was my fault", text];
             product = compare(trigger, reply, text);
         }
         // Final Responses
         else {
+            if(Config.kadenceMode) return ["Sorry", text];
             product = alternative[Math.floor(Math.random() * alternative.length)];
         }
 
