@@ -3,6 +3,7 @@
     "Prefix": "bill",
     "Owner": "Your ID",
     "BotID": "The Bots ID",
-    "BotVersion": "0.1.8",
-    "BotName": "Bill Bot"
+    "BotVersion": "0.7.1",
+    "BotName": "Bill Bot",
+    "kadenceMode": "true"
 }
