@@ -2,12 +2,11 @@
 const Colors = require('colors');
 const Config = require('../config.json');
 const Color = require('./color');
+const child_process = require("child_process");
 
 // Vars
 let BgColor = "black";
 let LogColor = "white";
-
-
 
 
 /**
@@ -84,6 +83,11 @@ function FG (name) {
 }
 
 
+/* TODO
+Get CBG working. Commands aren't running on main child_process lmao
+ */
+
+
 /**
  * Sets entire terminal color
  * @param {String} [color=null] - Standard HTML Color Name
@@ -97,11 +101,9 @@ function CBG (color, r, g, b) {
     if(color !== undefined) hex = Color.colorNameToHex(color);
     else if ((r&&g&&b)!==undefined) hex = Color.RGBtoHEX(r,g,b);
     else hex = Color.colorNameToHex(BgColor);
-    let child_process = require('child_process');
-    let cmd = `printf %b '\\e]11;${hex}\\a'`
-    console.log(cmd);
+    console.log(hex)
     try {
-        child_process.execSync(cmd);
+        child_process.execSync(`printf %b '\\e]11;${hex}\\a'`);
     } catch (error) {
         console.log(error.message);
     }
@@ -117,9 +119,7 @@ function CBG (color, r, g, b) {
  */
 function colorSwitch (name, mode) {
     try {
-
         name = name.toLowerCase();
-
         switch (name) {
             case "blue":
                 return name;
@@ -143,7 +143,10 @@ function colorSwitch (name, mode) {
                 else
                     return "black";
             default:
-                return "black";
+                if (mode === 0)
+                    return "none";
+                else
+                    return "black";
         }
 
     } catch (err) {
@@ -201,7 +204,8 @@ function addBG (text) {
             case "yellow":
                 return Colors.bgYellow(text);
             default:
-                return Colors.bgBlack(text);
+                // Makes background none
+                return text
         }
     } catch (err) {
         error(err);

@@ -2,6 +2,7 @@ const logger = require('./func/logger');
 const sleep = require('./func/sleep').sleep;
 const color = require('./func/color');
 
+
 logger.BG('red');
 logger.FG('white');
 logger.log('Banana');
